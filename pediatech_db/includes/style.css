@@ -1,0 +1,88 @@
+
+        html { scroll-behavior: smooth; }
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* --- WATER FILLING ANIMATION CSS --- */
+        .loader-container {
+            position: fixed;
+            inset: 0;
+            background: #0f172a; /* Slate-900 background */
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.5s ease, visibility 0.5s;
+        }
+        
+        /* Circular Jar */
+        .water-jar {
+            width: 150px;
+            height: 150px;
+            border: 4px solid #ee2270ff; /* orange-400 border */
+            border-radius: 50%;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 30px rgba(34, 211, 238, 0.2);
+            background: rgba(255,255,255,0.05);
+        }
+
+        /* The Liquid */
+        .water {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 0%;
+            background: #f7760cc7; /* orange-600 liquid */
+            animation: fillUp 2.5s ease-in-out forwards; /* Fills in 2.5 seconds */
+        }
+
+        /* Wave Effect */
+        .water::before, .water::after {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            top: -150%;
+            left: -50%;
+            background: rgba(255, 115, 73, 0.2);
+            border-radius: 40%;
+            animation: wave 5s linear infinite;
+        }
+        .water::after {
+            background: rgba(255, 255, 255, 0.1);
+            top: -160%;
+            left: -60%;
+            animation: wave 6s linear infinite reverse;
+        }
+
+        /* Loading Text */
+        .loader-text {
+            position: absolute;
+            z-index: 10;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+            letter-spacing: 3px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+
+        /* Keyframes */
+        @keyframes wave {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        @keyframes fillUp {
+            0% { height: 0%; }
+            25% { height: 30%; }
+            50% { height: 60%; }
+            75% { height: 85%; }
+            100% { height: 100%; }
+        }
+        
+        /* Hide Class */
+        .loader-hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
