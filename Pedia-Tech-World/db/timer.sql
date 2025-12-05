@@ -1,0 +1,1 @@
+ALTER TABLE offers ADD COLUMN expiry_date DATETIME NULL;
